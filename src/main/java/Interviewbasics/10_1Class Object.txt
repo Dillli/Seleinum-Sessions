@@ -1,0 +1,29 @@
+package com.lj.basics;
+
+public class clsobj {
+
+	public static void main(String[] args) {
+	
+		// TODO Auto-generated method stub
+		System.out.println("this is main");
+		
+		//Create instance of this class
+		
+		clsobj cls=new clsobj();
+		
+		//call methods of this class
+		cls.iamfunction();
+		
+		iamstatic();
+	}
+	
+	void iamfunction()
+	{
+		System.out.println("this is function");
+	}
+
+	static void iamstatic()
+	{
+		System.out.println("iam static");
+	}
+}

@@ -1,0 +1,34 @@
+package com.lwd.basics;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class HandleFrames {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+	WebDriver driver = new FirefoxDriver();
+		
+		driver.get("http://www.flipkart.com/");
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		driver.findElement(By.xpath("//*[@id='webklipper-publisher-widget-container-content-expand-collapse']/div")).click();
+		driver.switchTo().frame("webklipper-publisher-widget-container-frame");		
+
+		Wait<WebDriver> wait=new WebDriverWait(driver, 30);	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='field_email_EMAIL']")));
+		
+		driver.findElement(By.xpath("//*[@id='field_email_EMAIL']")).sendKeys("test@gmail.com");
+		
+		driver.switchTo().defaultContent();
+	}
+}

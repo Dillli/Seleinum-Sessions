@@ -1,0 +1,16 @@
+package com.lwd.basics;
+
+import javax.swing.JOptionPane;
+
+public class iodialogs {
+
+	public static void main(String[] args) {
+		//To display message  
+		JOptionPane.showMessageDialog(null, "hello");
+		
+		//To take input from user and display message
+		String s= JOptionPane.showInputDialog(null, "enter something");
+		JOptionPane.showMessageDialog(null, s);
+	}
+
+}

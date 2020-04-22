@@ -1,0 +1,14 @@
+# OHRM Login Page
+txtEmail = //input[@id='txtUsername']
+txtPwd = //input[@id='txtPassword']
+btnLogin = //input[@id='btnLogin']
+
+# OHRM Welcome Page
+lnkPIM = PIM
+lnkAddEmployee = Add Employee
+
+# OHRM Add Employee Page
+txtFirstName = firstName
+txtLastName = lastName
+btnSave = //input[@value='Save']
+elmPersonalDetails = //h1[text()='Personal Details']

@@ -1,0 +1,69 @@
+package com.ohrm.sikuli;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Pattern;
+import org.sikuli.script.Screen;
+import org.sikuli.script.SikuliException;
+
+public class HandlingOtherTech {
+
+	public WebDriver driver;
+	public Screen s=new Screen();
+	
+	public static void main(String[] args) throws SikuliException {
+		// TODO Auto-generated method stub
+		WebDriver driver = new FirefoxDriver();
+		
+		//Instruct webdriver to wait for 10 seconds before throwing an error
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		driver.get("http://localhost/orangehrm/symfony/web/index.php/auth/login");
+		driver.manage().window().maximize();
+		//Login
+		driver.findElement(By.xpath("//input[@id='txtUsername']")).sendKeys("admin");
+		driver.findElement(By.id("txtPassword")).sendKeys("sudhakar");
+		driver.findElement(By.id("btnLogin")).click();
+		
+		Actions action = new Actions(driver);
+		WebElement pim = driver.findElement(By.linkText("PIM"));
+		action.moveToElement(pim).build().perform();
+		
+		//action.moveToElement(we).moveToElement(driver.findElement(By.xpath("//a[text()='Add Employee']"))).click().build().perform();
+		
+		driver.findElement(By.xpath("//a[text()='Add Employee']")).click();
+		
+		driver.findElement(By.id("firstName")).sendKeys("mindq");
+		driver.findElement(By.id("lastName")).sendKeys("systems");
+		driver.findElement(By.id("photofile")).click();
+		
+		Screen scrn=new Screen();
+		String srcPath = "C:\\Users\\sudhakar\\Desktop\\Selenium1\\LearnWebDriver\\img";
+		
+		scrn.type(srcPath+"\\txtfilename.PNG", srcPath+"\\Photo.PNG");
+		
+		Pattern btnOpen = new Pattern(srcPath+"\\btnOpen.PNG");
+		scrn.click(btnOpen);
+
+		driver.findElement(By.xpath("//input[@value='Save']")).click();
+		/*		
+		if (driver.findElement(By.xpath("//h1[text()='Personal Details']")).isDisplayed()){
+			System.out.println("Add Employee successful");
+		}
+		else
+		{
+			System.out.println("Fail to add Employee");
+			System.exit(-1);			
+		}
+		*/
+		
+	}
+
+}

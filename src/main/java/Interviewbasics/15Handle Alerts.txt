@@ -1,0 +1,18 @@
+package com.lwd.basics;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class HandleAlerts {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		WebDriver driver = new FirefoxDriver();
+		driver.get("https://landfill.bugzilla.org/bugzilla-tip/");
+		driver.findElement(By.xpath("//*[@value='Search']")).click();
+		driver.switchTo().alert().accept();		
+		
+	}
+
+}

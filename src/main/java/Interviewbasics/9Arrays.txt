@@ -1,0 +1,56 @@
+package com.lj.basics;
+
+import javax.swing.JOptionPane;
+
+public class arrays {
+
+	public static void main(String[] args) {
+
+/*
+		int[] myarray;
+		myarray = new int[2];
+		myarray[0]=10;
+		myarray[1]=20;
+		
+		//System.out.println(myarray[0]);
+
+		for(int i=0;i<myarray.length;i++ ){
+			JOptionPane.showMessageDialog(null, myarray[i]);
+		}
+
+		
+		//extended for loop
+		for(int j:myarray ){
+			JOptionPane.showMessageDialog(null, j);
+		}
+
+		//Create and store array in single line
+		int[] myarray1 = {10,20,30};
+		
+		JOptionPane.showMessageDialog(null, myarray1.length);
+		
+		for(int x:myarray1 ){
+			JOptionPane.showMessageDialog(null, x);
+		}
+*/				
+
+		String[] myStrArray;
+		myStrArray = new String[2];
+		myStrArray[0] = "selenium";
+		myStrArray[1] = "webdriver";
+
+		for(String sstr:myStrArray ){
+			JOptionPane.showMessageDialog(null, sstr);
+		}
+		
+		String[] myStrArray1 = {"10","20"};
+		
+		for(String str1:myStrArray1 ){
+			JOptionPane.showMessageDialog(null, str1);
+		}
+/*	
+	// arrays are in fixed legth
+	 * 
+	 */
+	}
+}

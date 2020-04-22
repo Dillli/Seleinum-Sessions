@@ -1,0 +1,9 @@
+Right click on Project -> Goto TestNG -> Add TestNG class
+
+Create a method with an annotation @Test
+
+
+If there is any method with @Test will be excuted
+
+You can create n number of tests
+

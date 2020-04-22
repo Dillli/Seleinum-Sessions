@@ -1,0 +1,50 @@
+package com.lwd.basics;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class Synchronization {
+
+	/*
+	 * two types of synchronization
+	 * 	1. Explicit waits 
+	 * 	2. Implicit wait 
+	 */
+	
+	public static void main(String[] args) throws InterruptedException {
+		
+		WebDriver driver = new FirefoxDriver();
+		
+		//Instruct webdriver to wait for 100 seconds for page loading
+		//Implicit wait
+		driver.manage().timeouts().pageLoadTimeout(100, TimeUnit.SECONDS);
+		
+		//Instruct webdriver to wait for 10 seconds before throwing an error
+		//We can use it to search for a web element
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		driver.get("http://localhost/orangehrm/symfony/web/index.php/auth/login");
+		//Login
+		
+		//Wait for a specific element to be present in source code
+		//Explicit wait
+		Wait<WebDriver> wait=new WebDriverWait(driver, 30);	
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@id='txtUsername']")));
+	
+		//Wait for a specific element to be present in source code and visible in page 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='txtUsername']")));
+		
+		driver.findElement(By.xpath("//input[@id='txtUsername']")).sendKeys("admin");
+		driver.findElement(By.id("txtPassword")).sendKeys("sudhakar");
+		driver.findElement(By.id("btnLogin")).click();
+		
+		//pause script execution for specified number of milli seconds
+		Thread.sleep(10000);
+	}
+}

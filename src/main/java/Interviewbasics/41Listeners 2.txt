@@ -1,0 +1,44 @@
+package com.tng.listeners;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.testng.ITestResult;
+import org.testng.TestListenerAdapter;
+
+
+
+public class wdlisteners extends TestListenerAdapter{
+	
+	public void onTestSuccess(ITestResult tr) {
+		System.out.println("Testcase pass");
+	}
+	
+	public void onTestFailure(ITestResult tr) {
+		System.out.println("Testcase fail");
+				
+		Object currentclass = tr.getInstance();
+		WebDriver driver = ((com.tng.listeners.tnglisters)currentclass).driver;
+		File screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		
+        Date dNow = new Date();
+        SimpleDateFormat fdt = new SimpleDateFormat("yyMMddhhmmssMs");
+        String rndval = fdt.format(dNow); 
+        String Directory = "C:\\Users\\sudhakar\\Desktop\\Selenium1\\LearnWebDriver\\screenshots\\";
+		String flPath =Directory+rndval+".png";
+		
+			try {
+				FileUtils.copyFile(screenShot, new File(flPath));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+	}
+}

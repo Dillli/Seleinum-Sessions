@@ -1,0 +1,56 @@
+package com.tng.multibr;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.testng.Reporter;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class MultiBrowserEx {
+
+	WebDriver driver;
+	@BeforeTest
+	@Parameters({"browsertype"})
+	public void openbrowser(String brType){
+	
+		if (brType.equalsIgnoreCase("firefox")){
+			//Open firefox
+			driver = new FirefoxDriver();
+		}
+		else if (brType.equalsIgnoreCase("chrome")){
+			//Open Chrome
+			System.setProperty("webdriver.chrome.driver","E:\\Selenium Software\\BrowserDrivers\\chromedriver.exe");
+			driver = new ChromeDriver();
+		}
+		else if (brType.equalsIgnoreCase("ie")){
+			//Open Chrome
+			System.setProperty("webdriver.ie.driver","E:\\Selenium Software\\BrowserDrivers\\IEDriverServer.exe");
+			driver = new InternetExplorerDriver();
+		}
+		driver.get("http://localhost/orangehrm/symfony/web/index.php/auth/login");
+		driver.manage().window().maximize();
+		System.out.println(brType+" BRowser opened");
+	}
+	
+	@Test 
+	@Parameters({"username","password"})
+	public void login(String uid, String pwd) throws InterruptedException{
+		//Login
+		driver.findElement(By.xpath("//input[@id='txtUsername']")).sendKeys(uid);
+		driver.findElement(By.id("txtPassword")).sendKeys(pwd);
+		driver.findElement(By.id("btnLogin")).click();
+		Thread.sleep(5000);
+		System.out.println("Logged in to browser");
+	}
+	
+	@AfterTest
+	public void closeApp(){
+		driver.close();
+		System.out.println("browser closed");
+	}
+}

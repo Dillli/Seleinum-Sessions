@@ -1,0 +1,13 @@
+<suite name = "smoke1">
+  <test name="smoketestcases1">
+	<parameters>
+		<parameter name = "username" value = "admin"/>
+		<parameter name = "password" value = "sudhakar"/>
+	</parameters>
+	<packages>
+			<package name = "ohrmtnghashmap"/>
+	</packages>
+
+  </test>
+
+</suite>

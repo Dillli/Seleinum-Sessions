@@ -1,0 +1,37 @@
+package com.lwd.basics;
+
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class HandleWindows {
+
+	public static void main(String[] args) throws InterruptedException {
+		//Url: https://www.linkedin.com/start/join?trk=uno-reg-guest-home-join
+		WebDriver driver = new FirefoxDriver();
+		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+		driver.get("https://www.linkedin.com/start/join?trk=uno-reg-guest-home-join");
+		
+		//Instruct webdriver to wait for 10 seconds before throwing an error
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		
+		
+		driver.findElement(By.xpath("//*[@class='fb-btn']")).click();
+		
+        for (String wndhandle : driver.getWindowHandles()) {
+
+        	System.out.println(wndhandle);
+        	driver.switchTo().window(wndhandle);
+        	String pgtitle = driver.getTitle();
+        	if (pgtitle.equals("Facebook")) {
+        		break;
+        		}
+        	}
+        driver.findElement(By.id("email")).sendKeys("sudhakar@gmail.com");
+	}
+
+}

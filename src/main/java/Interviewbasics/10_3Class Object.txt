@@ -1,0 +1,43 @@
+package com.lj.basics;
+
+public class mymovie {
+
+	//Instance Variables
+	String title;
+	String genre;
+	int rating;
+	
+	public static void main(String[] args) {
+		//Main method is always static
+		//You can call static methods directly from static methods
+		//To call non static method we must create instance of class and call by using reference
+		
+		//create reference
+		mymovie one = new mymovie();
+		
+		//Assign values
+		one.title = "kshanam";
+		one.genre = "thriller";
+		one.rating = 4;
+		
+		//Call methods
+		one.playIt();
+		
+		mymovie two = new mymovie();
+		two.title = "interstellar";
+		two.genre = "scifi";
+		two.rating = 5;
+		two.playIt();
+		
+		mymovie three = new mymovie();
+		three.title = "bangloredays";
+		three.genre = "comedy,drama";
+		three.rating = 5;
+		three.playIt();
+		
+	}
+
+	void playIt() {
+		System.out.println("Playing the movie "+title);
+	}
+}

@@ -1,0 +1,53 @@
+package ohrmtnghashmap;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Set;
+
+import org.testng.*;
+
+import javax.swing.JOptionPane;
+
+public class CommonMethods {
+	
+	public static void main(String[] args){
+		//new CommonMethods().hashmapex();
+		new CommonMethods().userhashmap();
+	}
+	
+	public void hashmapex(){
+	      HashMap hm = new HashMap();
+	      // Put elements to the map
+	      hm.put("A", "Apple");
+	      hm.put("B", "Ball");
+	      hm.put("C", "Cat");
+	      
+	      Set hs = hm.keySet();
+	      
+	      for(Object nkey:hs){
+	    	  System.out.println(nkey);
+	    	  System.out.println(hm.get(nkey));
+	      }
+	}
+	
+	public void userhashmap(){
+	      HashMap udetails = new HashMap();
+	      // Put elements to the map
+	      udetails.put("uname", "admin");
+	      udetails.put("pwd", "qwerty");
+	      udetails.put("fname", "sudhakar");
+	      udetails.put("lname", "k");
+	      
+	      udetails.get("uname");
+	      
+	      Set hs = udetails.keySet();
+	      
+	      for(Object nkey:hs){
+	    	  System.out.println(nkey);
+	    	  System.out.println(udetails.get(nkey));
+	      }
+	}
+}

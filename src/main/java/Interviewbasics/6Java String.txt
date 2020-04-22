@@ -1,0 +1,53 @@
+package com.lwd.basics;
+
+public class workwithstring {
+
+	public static void main(String[] args) {
+		// reference datatypes
+		
+		String str ="Hello";
+		System.out.println("my new string: "+str);
+
+		//you can change value
+		str = "welcome";
+		
+		//get length
+		int l = str.length();
+		System.out.println("my string length is "+l);
+		
+		//concatenate string
+		String str1 = "hp";
+		String str2 = "UFT";
+		
+		String strConcate =str1+str2;
+		
+		String strc = str1.concat(str2);
+		System.out.println("my combined string is :"+strConcate);
+		System.out.println("my combined string is :"+strc);
+				
+		//get sub string
+		String str3 = "mail sent to sudhakar@gmail.com successfully";
+		String mysub = str3.substring(13, 31);
+		System.out.println("my sub string is :"+mysub);
+		
+		//convert to lower case and uppercase
+		
+		String str4 = "WebDriver";
+		String lStr4 = str4.toLowerCase();
+		System.out.println("my lower case string is :"+lStr4);
+		String uStr4 = str4.toUpperCase();
+		System.out.println("my lower case string is :"+uStr4);
+		
+		//Trim space
+		
+		String str5 = "  Selenium   ";
+		String tStr5 = str5.trim();
+		System.out.println("my trimmed string is :"+tStr5);
+		
+		//Verify string exist
+		String str6 = "Hello how are you";
+		int fPosition = str6.indexOf("are");
+		System.out.println("identified position is :" + fPosition);
+	}
+
+}

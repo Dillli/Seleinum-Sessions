@@ -1,0 +1,13 @@
+<suite name = "testng">
+<listeners>
+	<listener class-name="com.tng.listeners.wdlisteners"> </listener>
+</listeners>
+  <test name="listenersexample">
+
+	<packages>
+			<package name = "com.tng.listeners"/>
+	</packages>
+
+  </test>
+
+</suite>

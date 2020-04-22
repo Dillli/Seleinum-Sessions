@@ -1,0 +1,33 @@
+<suite name = "smoke" parallel="tests">
+  <test name="fftest">
+	<parameters>
+		<parameter name = "browsertype" value = "firefox"/>
+		<parameter name = "username" value = "admin"/>
+		<parameter name = "password" value = "sudhakar"/>
+	</parameters>
+	<packages>
+			<package name = "com.tng.multibr"/>
+	</packages>
+  </test>
+  <test name="chrometest">
+	<parameters>
+		<parameter name = "browsertype" value = "chrome"/>
+		<parameter name = "username" value = "admin"/>
+		<parameter name = "password" value = "sudhakar"/>
+	</parameters>
+	<packages>
+			<package name = "com.tng.multibr"/>
+	</packages>
+  </test>
+  
+  <test name="ieetest">
+	<parameters>
+		<parameter name = "browsertype" value = "ie"/>
+		<parameter name = "username" value = "admin"/>
+		<parameter name = "password" value = "sudhakar"/>
+	</parameters>
+	<packages>
+			<package name = "com.tng.multibr"/>
+	</packages>
+  </test>
+</suite>

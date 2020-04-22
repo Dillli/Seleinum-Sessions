@@ -1,0 +1,3 @@
+Go to the TestNG xml -> Right click -> Run As TestNG Suite
+
+Observe console

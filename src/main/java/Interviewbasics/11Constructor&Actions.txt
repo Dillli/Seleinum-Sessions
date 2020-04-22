@@ -1,0 +1,48 @@
+package com.orhrm;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Test1 {
+	
+	WebDriver driver;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Test1 ohrm=new Test1();
+		ohrm.login();
+		ohrm.addemployee();
+	}
+
+	Test1(){
+		driver = new FirefoxDriver();
+		//
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		driver.get("http://localhost/orangehrm/symfony/web/index.php/auth/login");
+	}
+	
+	void login(){
+		driver.findElement(By.id("txtUsername")).sendKeys("admin");
+		driver.findElement(By.id("txtPassword")).sendKeys("sudhakar");
+		driver.findElement(By.id("btnLogin")).click();		
+	}
+	
+	void addemployee(){
+		Actions action = new Actions(driver);
+		WebElement pim = driver.findElement(By.linkText("PIM"));
+		action.moveToElement(pim).build().perform();
+		action.moveToElement(driver.findElement(By.linkText("Add Employee"))).build().perform();
+		driver.findElement(By.linkText("Add Employee")).click();
+		
+		//new Actions(driver).moveToElement(driver.findElement(By.linkText("Admin"))).moveToElement(driver.findElement(By.linkText("User Management"))).click().build().perform();
+	}
+	
+	
+	
+}

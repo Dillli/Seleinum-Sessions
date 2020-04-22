@@ -1,0 +1,44 @@
+package com.lwd.basics;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class HandlingElements {
+
+	public static void main(String[] args) {
+
+		WebDriver driver = new FirefoxDriver();
+		driver.get("http://my.naukri.com/manager/createacc2.php");
+		
+		//entering data in text box
+		driver.findElement(By.id("uname")).sendKeys("username");
+		
+		//Clicking on any element
+		driver.findElement(By.id("uname")).click();
+		
+		//Selecting item in list box
+		new Select(driver.findElement(By.id("country"))).selectByVisibleText("INDIA");
+		
+		/*Selecting a checkbox
+		 *There is no seperate method for checkbox selection
+		 *use click to select or unselect.
+		 *use if condition to verify selected or not
+		 */
+		if (!driver.findElement(By.name("Accept")).isSelected()){
+			driver.findElement(By.name("Accept")).click();
+		}		
+
+		//Deselecting checkbox if selected
+		if (driver.findElement(By.name("Accept")).isSelected()){
+			driver.findElement(By.name("Accept")).click();
+		}		
+		
+		//selecting radio
+		
+		driver.findElement(By.xpath("//input[@name='ctl00$cpEndUserMain$ucSearchRoute$rbtnList'][@value='Round Trip']")).click();
+		
+	}
+
+}

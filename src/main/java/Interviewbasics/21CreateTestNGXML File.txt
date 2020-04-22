@@ -1,0 +1,20 @@
+Right click on Project -> Goto file -> name it as TestNG.xml
+
+Select the project path
+
+
+write below code in xml file. The below xml configuration will execute all test in one class
+If you one more <class name="packagename.classname"/> it will execute that class.
+
+
+<suite name = "anysuitename">
+  <test name="anytestname">
+
+	<classes>
+		<class name="packagename.classname"/>
+		
+	</classes>
+
+  </test>
+
+</suite>

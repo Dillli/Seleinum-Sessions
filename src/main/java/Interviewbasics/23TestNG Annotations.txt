@@ -1,0 +1,38 @@
+The methods will be configured and executed based annotations we provide
+
+//@Test : it's a test method. By default this will be execute
+//@BeforeTest : Executes this method before test tag in xml
+//@AfterTest : Executes this method After test end tag in xml
+
+//@BeforeClass : Executes this method before class tag in xml
+//@AfterClass : Executes this method After class end tag in xml
+
+
+package com.tng;
+
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class Learntestng {
+	
+	@BeforeTest //Executes once before executing test
+	public void generatetestdata(){
+		System.out.println("executing before test");
+	}
+	
+	@BeforeMethod //Executes once before executing test
+	public void generatetestdata1(){
+		System.out.println("executing before method");
+	}
+	
+	  @Test(groups={"p1"})
+	  public void test2() {
+		System.out.println("this is a test2");  
+	  }
+	
+	  @Test(groups={"p1"})
+	  public void test1() {
+		System.out.println("this is a test1");  
+	  }
+}

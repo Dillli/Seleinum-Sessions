@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Yahoo App Test Automation Suite">
+	<test name="Yahoo App Test">
+
+		
+		<classes>
+			<class name="com.tests.ExceptionTimeOutTest" />
+		</classes>
+
+	</test>
+	
+	
+	
+</suite>

@@ -1,0 +1,14 @@
+package ohrmtngdata.asserts;
+
+public class Cinherit {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.out.println(new CommonMethods().getuniqueid());
+		Thread.sleep(1000);
+		System.out.println(new Cmethods().getuniqueid());
+		System.out.println(new Cmethods().test4());
+		
+	}
+
+}

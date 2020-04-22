@@ -1,0 +1,81 @@
+package com.lwd.basics;
+
+public class variables {
+
+	public static void main(String[] args) {
+		// comment
+		
+		/*
+		 * multi line comment
+		 */
+		
+		// Premitive data types
+		/*
+		 * byte
+		 * min : -128
+		 * max : 127
+		 * default : 0
+		 */
+		
+		byte b = 100;
+		System.out.println("byte value is "+b);
+		
+		/*
+		 * short
+		 * min : -32768
+		 * max : 32767
+		 * default : 0
+		 */
+		short s = 10000;
+		System.out.println("short value is "+s);
+		
+		/*
+		 * int
+		 * min : -2,147,483,648
+		 * max : 2,147,483,647
+		 * default : 0
+		 */
+		int i = 100000;
+		System.out.println("int value is "+i);
+		
+		/*
+		 * long
+		 * min : -9,223,372,036,854,775,808
+		 * max : 9,223,372,036,854,775,807
+		 * default : 0L
+		 */
+		long l = 1000000L;
+		System.out.println("long value is "+l);
+		
+		/*
+		 * float
+		 * default : 0.0f
+		 */
+		float f = 2.1f;
+		System.out.println("float value is "+f);
+		
+		/*
+		 * double
+		 * default : 0.0d
+		 */
+		double d = 2.1;
+		System.out.println("double value is "+d);
+		
+		/*
+		 * boolean
+		 * default : false
+		 */
+		boolean b1 = true;
+		System.out.println("boolean value is "+b1);
+		
+		/*
+		 * char
+		 * min : 0
+		 * max : 65,355
+		 */
+		char c = 'c';
+		System.out.println("char value is "+c);
+		
+	}
+
+}

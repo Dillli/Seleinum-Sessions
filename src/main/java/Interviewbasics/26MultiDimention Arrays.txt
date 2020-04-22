@@ -1,0 +1,90 @@
+package com.lj.basics;
+
+import javax.swing.JOptionPane;
+
+public class arrays {
+
+	public static void main(String[] args) {
+
+/*
+		int[] myarray;
+		myarray = new int[2];
+		myarray[0]=10;
+		myarray[1]=20;
+		
+		//System.out.println(myarray[0]);
+
+		for(int i=0;i<myarray.length;i++ ){
+			JOptionPane.showMessageDialog(null, myarray[i]);
+		}
+
+		
+		//extended for loop
+		for(int j:myarray ){
+			JOptionPane.showMessageDialog(null, j);
+		}
+
+		//Create and store array in single line
+		int[] myarray1 = {10,20,30};
+		
+		JOptionPane.showMessageDialog(null, myarray1.length);
+		
+		for(int x:myarray1 ){
+			JOptionPane.showMessageDialog(null, x);
+		}				
+
+		String[] myStrArray;
+		myStrArray = new String[2];
+		myStrArray[0] = "selenium";
+		myStrArray[1] = "webdriver";
+
+		for(String sstr:myStrArray ){
+			JOptionPane.showMessageDialog(null, sstr);
+		}
+		
+		String[] myStrArray1 = {"10","20"};
+		
+		for(String str1:myStrArray1 ){
+			JOptionPane.showMessageDialog(null, str1);
+		}
+*/
+		int i[] = new int [2];
+		i[0]=10;
+		i[1]=20;
+		for(int j=0;j<i.length;j++){
+			System.out.println(i[j]);			
+		}
+
+		//Storing anykind of data in array
+		Object obj[]=new Object[3];
+		obj[0]=10;
+		obj[1]="str";
+		obj[2]="sudhakar";
+		
+		for(int x=0;x<obj.length;x++){
+			Object y=obj[x];
+			System.out.println(y);			
+		}		
+		
+		//Stroting data in two dimention arrays
+		int td[][]=new int[2][3];
+		td[0][0]=10;
+		td[0][1]=20;
+		td[0][2]=30;
+		td[1][0]=40;
+		td[1][1]=50;
+		td[1][2]=60;
+		
+		for (int t=0;t<td.length;t++){
+			for(int s=0;s<td[t].length;s++){
+				System.out.println(td[t][s]);				
+			}
+		}
+	}
+}
+
+
+
+
+
+

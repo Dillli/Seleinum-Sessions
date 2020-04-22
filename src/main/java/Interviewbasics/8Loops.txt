@@ -1,0 +1,62 @@
+package com.lj.basics;
+
+import javax.swing.JOptionPane;
+
+public class loops {
+	public static void main(String[] args) {
+		
+		//Display "I will practice everyday" for 10 times
+		
+		for(int i=1;i<=10;i++){
+			JOptionPane.showMessageDialog(null, "I will practice everyday");
+		}
+
+		
+		//Display values from 10 to 20
+		
+		for(int i=10;i<=20;i++){
+			JOptionPane.showMessageDialog(null, i);
+		}		
+		
+		//Display values from 10 to 1
+		for(int i=10;i>=1;i--){
+			JOptionPane.showMessageDialog(null, i);
+		}
+		
+				
+		//Display second table
+		for(int i=1;i<=10;i++){
+			JOptionPane.showMessageDialog(null, "2*"+i+"="+2*i);
+		}		
+		
+		
+		// For displaying numbers
+		int loopVal = 1;
+
+		while ( loopVal < 5) {
+			JOptionPane.showMessageDialog(null, loopVal );
+			//loopVal++;
+		}
+		
+		
+		// While not execute even once if condition fails
+		int loopVal1 = 5;
+
+		while ( loopVal1 < 5) {
+			JOptionPane.showMessageDialog(null, loopVal1 );
+			loopVal1++;
+		}
+
+
+		// Do atleast execute once even if condition fail
+		int loopVal2 = 5;
+
+		do {
+			JOptionPane.showMessageDialog(null, loopVal2 );
+			loopVal2++;
+		}
+		while ( loopVal2 < 5 );
+		/*
+		*/
+	}
+}

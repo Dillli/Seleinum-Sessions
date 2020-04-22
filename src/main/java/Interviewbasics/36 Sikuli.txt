@@ -1,0 +1,20 @@
+package com.ohrm.sikuli;
+
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Pattern;
+import org.sikuli.script.Screen;
+import org.sikuli.script.SikuliException;
+
+public class emsikuli {
+
+	public static void main(String[] args) throws SikuliException {
+		// TODO Auto-generated method stub
+
+		Screen scrn=new Screen();
+		String imgPath = "C:\\SikuliImgs\\Photo.PNG";
+		
+		scrn.type("C:\\SikuliImgs\\txtFile.PNG", imgPath);
+		scrn.click("C:\\SikuliImgs\\btnOpen.PNG");
+	}
+
+}

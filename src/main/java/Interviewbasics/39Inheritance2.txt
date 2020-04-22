@@ -1,0 +1,8 @@
+package ohrmtngdata.asserts;
+
+public class Cmethods extends CommonMethods{
+
+	public String test4(){
+		return "this is test4 in cmethods";
+	}
+}

@@ -1,0 +1,87 @@
+  package com.tng.exceptionhandle;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.NoSuchFrameException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
+import org.testng.Reporter;
+
+
+public class WdExHandle {
+	static WebDriver driver;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//http://selenium.googlecode.com/git-history/selenium-2.27.0/docs/api/py/common/selenium.common.exceptions.html
+		
+		//No Element Found using findby : NoSuchElementException
+		//No element visible in page: ElementNotVisibleException
+		//Not able to select element : ElementNotSelectableException
+		//Trying to assign more value than defined: ArrayIndexOutOfBoundsException
+		//NoSuchWindowException 
+		//FileNotFoundExpection
+		//NoSuchFrameException 
+		//TimeoutException 
+		
+		//try, catch, throw, throws, finally
+		
+		driver = new FirefoxDriver();
+		
+		//Instruct webdriver to wait for 10 seconds before throwing an error
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		driver.get("http://localhost/orangehrm/symfony/web/index.php/auth/login");
+		driver.manage().window().maximize();
+		
+		//Login
+		driver.findElement(By.xpath("//input[@id='txtUsername']")).sendKeys("admin");
+		driver.findElement(By.id("txtPassword")).sendKeys("sudhakar");
+		driver.findElement(By.id("btnLogin")).click();
+
+		WdExHandle wdex= new WdExHandle();
+		wdex.addEmployee();
+	}
+
+	public void addEmployee(){
+
+		try{
+		
+		/*
+		Actions action = new Actions(driver);
+		WebElement pim = driver.findElement(By.linkText("PIM"));
+		action.moveToElement(pim).build().perform();
+		*/
+		driver.findElement(By.linkText("Add Employee")).click();
+				
+		driver.findElement(By.id("firstName")).sendKeys("mindq");
+		driver.findElement(By.id("lastName")).sendKeys("systems");
+		
+		driver.findElement(By.xpath("//input[@value='Save']")).click();
+		
+		if (driver.findElement(By.xpath("//h1[text()='Personal Details']")).isDisplayed()){
+			Reporter.log("Employee Added");
+			System.out.println("Add Employee successful");
+		}
+		else
+		{
+			System.out.println("Fail to add Employee");
+			System.exit(-1);			
+		}
+		
+	}
+		catch (NoSuchElementException err){ 
+			System.out.println("element not found "+ err.getMessage());
+		}
+		
+		finally{
+			driver.close();
+		}
+	}
+	
+	
+}

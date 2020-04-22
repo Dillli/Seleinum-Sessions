@@ -1,0 +1,16 @@
+package com.log4jex;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+
+public class logcls {
+
+	public static void main(String[] args) {
+		Logger log = Logger.getLogger("logcls");
+		PropertyConfigurator.configure("C:\\Users\\sudhakar\\Desktop\\Selenium1\\LearnWebDriver\\log4j.properties");
+	      log.debug("Hello this is a debug message1");
+	      log.info("Hello this is an info message1");
+	      log.error("this is error");
+	      log.warn("this is warning");
+	}
+
+}

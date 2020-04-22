@@ -1,0 +1,18 @@
+package ohrmtngdata.asserts;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import org.testng.*;
+import javax.swing.JOptionPane;
+
+public class CommonMethods {
+
+	public String getuniqueid() {
+		System.out.println("the unique id is");
+        Date dNow = new Date();
+        
+        SimpleDateFormat fdt = new SimpleDateFormat("yyMMddhhmmssMs");
+        return fdt.format(dNow);
+	}
+
+}

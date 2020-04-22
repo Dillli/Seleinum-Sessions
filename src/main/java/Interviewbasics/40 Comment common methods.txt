@@ -1,0 +1,164 @@
+package ohrmtnghashmap;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Set;
+
+import org.testng.*;
+
+import javax.swing.JOptionPane;
+
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+
+public class CommonMethods {
+	
+	public static void main(String[] args){
+		new CommonMethods().userhashmap();
+	}
+	
+	public String getuniqueid() {
+		//Get current date
+        Date dNow = new Date();
+        
+        //change the format of data
+        SimpleDateFormat fdt = new SimpleDateFormat("yyMMddhhmmssMs");
+        //Return date from method
+        return fdt.format(dNow); 
+	}
+
+	public Object[][] readTCData() throws BiffException, IOException {		
+		
+		//Store file path
+		String FilePath = "C:\\Users\\sudhakar\\Desktop\\Selenium1\\LearnWebDriver\\TestData\\OrangeHrm.xls";
+		
+		//Open file as input stream
+		FileInputStream fs = new FileInputStream(FilePath);
+		
+		//Get the work book from file
+		Workbook wb = Workbook.getWorkbook(fs);
+
+		// TO get the access to the sheet
+		Sheet sh = wb.getSheet("Sheet1");
+
+		// To get the number of rows present in sheet
+		int totalNoOfRows = sh.getRows();
+
+		// To get the number of columns present in sheet
+		int totalNoOfCols = sh.getColumns();
+		
+		//Create two dimentional array with column size
+		
+		Object [][] tcData =new Object[1] [totalNoOfCols-1];
+		
+		//Iterate through for loop to get one by one cell
+		for (int row = 0; row < totalNoOfRows; row++) {
+				//Get cell data from first column and compare tc id
+				String clData = sh.getCell(0, row).getContents();
+			//Compare tc id to read data from that test case
+			if (clData.equalsIgnoreCase("TC_OHRM_AddUser")) {
+				//Get data from each column of that tcid
+				for (int col = 1; col < totalNoOfCols; col++) {
+					//Store data in two dimentional array
+					tcData[0][col-1] = sh.getCell(col, row).getContents();
+					System.out.println(tcData[0][col-1]);
+				}
+			break;
+			}
+			
+		}
+		//Retun two dimentional array
+		return tcData;
+	}	
+
+	public Object[][] readTCDataToHashMap() throws BiffException, IOException {		
+		//Store file path
+		String FilePath = "C:\\Users\\sudhakar\\Desktop\\Selenium1\\LearnWebDriver\\TestData\\OrangeHrm.xls";
+		
+		//Open file as stream
+		FileInputStream fs = new FileInputStream(FilePath);
+		
+		//Get workbook from stream
+		Workbook wb = Workbook.getWorkbook(fs);
+
+		// TO get the access to the sheet
+		Sheet sh = wb.getSheet("Sheet1");
+
+		// To get the number of rows present in sheet
+		int totalNoOfRows = sh.getRows();
+
+		// To get the number of columns present in sheet
+		int totalNoOfCols = sh.getColumns();
+		
+		//Create hashmap to store colname and tc row value
+		HashMap tcMapData = new HashMap();
+		
+		//Initialize two dimentional with only one value to store
+		//That one value will become the hashmap
+		Object [][] tcData =new Object[1] [1];
+		
+		//Iterate thorough each row to find tc id row 
+		for (int row = 0; row < totalNoOfRows; row++) {
+				//Get tcid in a variable
+				String clData = sh.getCell(0, row).getContents();
+			//If tcid matches read data from all columns
+			if (clData.equalsIgnoreCase("TC_OHRM_AddUser")) {
+				for (int col = 1; col < totalNoOfCols; col++) {
+					//Get cell data from first row of each column
+					//The first row in excel is having column names
+					String kName = sh.getCell(col, 0).getContents();
+					//Get column value
+					String kValue = sh.getCell(col, row).getContents();
+					//Store column name and column value in hashmap
+					tcMapData.put(kName, kValue);
+				}
+			//Stop forloop after reading data for the testcase
+			break;
+			}
+			
+		}
+		//Assign hash map value to two dimenstion array's first index 
+		tcData[0][0]=tcMapData;
+		//Return data
+		return tcData;
+	}	
+
+	public void hashmapex(){
+	      HashMap hm = new HashMap();
+	      // Put elements to the map
+	      hm.put("A", "Apple");
+	      hm.put("B", "Ball");
+	      hm.put("C", "Cat");
+	      
+	      Set hs = hm.keySet();
+	      
+	      for(Object nkey:hs){
+	    	  System.out.println(nkey);
+	    	  System.out.println(hm.get(nkey));
+	      }
+	}
+	
+	public void userhashmap(){
+	      HashMap udetails = new HashMap();
+	      // Put elements to the map
+	      udetails.put("uname", "admin");
+	      udetails.put("pwd", "qwerty");
+	      udetails.put("fname", "sudhakar");
+	      udetails.put("lname", "k");
+	      
+	      udetails.get("uname");
+	      
+	      //get and store elements in a variable
+	      Set hs = udetails.keySet();
+	      
+	      //print hash map data
+	      for(Object nkey:hs){
+	    	  System.out.println(nkey);
+	    	  System.out.println(udetails.get(nkey));
+	      }
+	}
+}

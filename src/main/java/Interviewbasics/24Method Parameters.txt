@@ -1,0 +1,22 @@
+package com.lj.basics;
+
+public class Maths {
+
+	public static void main(String[] args) {
+		
+		Maths m = new Maths();
+		System.out.println(m.demoadd(2, 3));
+		System.out.println(m.demomul(2, 3));
+	}
+
+	public int demoadd(int a,int b){
+		
+		return a+b;
+		
+	}
+	public int demomul(int a,int b){
+		
+		return a*b;
+		
+	}
+}

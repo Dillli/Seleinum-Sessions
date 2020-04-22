@@ -1,0 +1,148 @@
+package ohrmtngProperty;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Properties;
+import java.util.Set;
+
+import org.testng.*;
+
+import javax.swing.JOptionPane;
+
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.read.biff.BiffException;
+
+public class CommonMethods {
+	
+	public static void main(String[] args) throws IOException{
+		//new CommonMethods().hashmapex();
+		//new CommonMethods().userhashmap();
+		new CommonMethods().readproperties();
+	}
+	
+	public String getuniqueid() {
+		System.out.println("in external");
+        Date dNow = new Date();
+        
+        SimpleDateFormat fdt = new SimpleDateFormat("yyMMddhhmmssMs");
+        return fdt.format(dNow); 
+	}
+
+	public Object[][] readTCData() throws BiffException, IOException {		
+		
+		String FilePath = "C:\\Users\\sudhakar\\Desktop\\Selenium1\\LearnWebDriver\\TestData\\OrangeHrm.xls";
+		FileInputStream fs = new FileInputStream(FilePath);
+		Workbook wb = Workbook.getWorkbook(fs);
+
+		// TO get the access to the sheet
+		Sheet sh = wb.getSheet("Sheet1");
+
+		// To get the number of rows present in sheet
+		int totalNoOfRows = sh.getRows();
+
+		// To get the number of columns present in sheet
+		int totalNoOfCols = sh.getColumns();
+		Object [][] tcData =new Object[1] [totalNoOfCols-1];
+		
+		for (int row = 0; row < totalNoOfRows; row++) {
+				String clData = sh.getCell(0, row).getContents();
+			if (clData.equalsIgnoreCase("TC_OHRM_AddUser")) {
+				for (int col = 1; col < totalNoOfCols; col++) {
+					tcData[0][col-1] = sh.getCell(col, row).getContents();
+					System.out.println(tcData[0][col-1]);
+				}
+			break;
+			}
+			
+		}
+		return tcData;
+	}	
+
+	public Object[][] readTCDataToHashMap() throws BiffException, IOException {		
+		
+		String FilePath = "C:\\Users\\sudhakar\\Desktop\\Selenium1\\LearnWebDriver\\TestData\\OrangeHrm.xls";
+		FileInputStream fs = new FileInputStream(FilePath);
+		Workbook wb = Workbook.getWorkbook(fs);
+
+		// TO get the access to the sheet
+		Sheet sh = wb.getSheet("Sheet1");
+
+		// To get the number of rows present in sheet
+		int totalNoOfRows = sh.getRows();
+
+		// To get the number of columns present in sheet
+		int totalNoOfCols = sh.getColumns();
+		HashMap tcMapData = new HashMap();
+		
+		Object [][] tcData =new Object[1] [1];
+		
+		for (int row = 0; row < totalNoOfRows; row++) {
+				String clData = sh.getCell(0, row).getContents();
+			if (clData.equalsIgnoreCase("TC_OHRM_AddUser")) {
+				for (int col = 1; col < totalNoOfCols; col++) {
+					
+					String kName = sh.getCell(col, 0).getContents();
+					String kValue = sh.getCell(col, row).getContents();
+					tcMapData.put(kName, kValue);
+				}
+			break;
+			}
+			
+		}
+		tcData[0][0]=tcMapData;
+		return tcData;
+	}	
+
+	public void hashmapex(){
+	      HashMap hm = new HashMap();
+	      // Put elements to the map
+	      hm.put("A", "Apple");
+	      hm.put("B", "Ball");
+	      hm.put("C", "Cat");
+	      
+	      Set hs = hm.keySet();
+	      
+	      for(Object nkey:hs){
+	    	  System.out.println(nkey);
+	    	  System.out.println(hm.get(nkey));
+	      }
+	}
+	
+	public void userhashmap(){
+	      HashMap udetails = new HashMap();
+	      // Put elements to the map
+	      udetails.put("uname", "admin");
+	      udetails.put("pwd", "qwerty");
+	      udetails.put("fname", "sudhakar");
+	      udetails.put("lname", "k");
+	      
+	      udetails.get("uname");
+	      
+	      Set hs = udetails.keySet();
+	      
+	      for(Object nkey:hs){
+	    	  System.out.println(nkey);
+	    	  System.out.println(udetails.get(nkey));
+	      }
+	}
+	
+	public void readproperties() throws IOException{
+
+		String flPath ="C:\\Users\\sudhakar\\Desktop\\Selenium1\\LearnWebDriver\\src\\ohrmtngProperty\\objects.properties";
+		FileInputStream flProperties= new FileInputStream(flPath);
+		
+		Properties propertiesobj = new Properties();
+		propertiesobj.load(flProperties);
+		
+		System.out.println(propertiesobj.get("txtFirstName") );
+		System.out.println(propertiesobj.get("elmPersonalDetails") );
+	}
+		
+	
+}
+

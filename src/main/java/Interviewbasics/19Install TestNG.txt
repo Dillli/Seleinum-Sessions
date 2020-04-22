@@ -1,0 +1,13 @@
+Open Eclipse -> Help ->Install New software 
+
+Click on add -> Give name as testng -> url http://beust.com/eclipse
+
+Click on OK
+
+TestNG will be displayed with a checkbox
+
+Select TestNG -> Click on Next -> Finish
+
+Restart Eclipse
+
+Right Click on Project -> Observe TestNG menu option displayed

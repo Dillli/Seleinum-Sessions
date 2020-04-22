@@ -1,0 +1,77 @@
+ package com.lj.basics;
+
+import java.io.*;
+import java.util.Scanner;
+
+import jxl.*;
+import jxl.biff.*;
+import jxl.read.biff.BiffException;
+
+public class ReadFiles {
+
+	public static void main(String[] args) throws IOException, BiffException{ 
+
+		ReadFiles readfile = new ReadFiles();
+		String flPath = "C:\\Users\\sudhakar\\Desktop\\Selenium1\\LearnWebDriver\\TestData\\demo.txt";
+		readfile.ReadTxtFile(flPath);
+		
+		//readfile.readExcel();
+	}
+	
+	public void ReadTxtFile(String flPath) throws IOException {
+		
+		//Take reference of the file using file reader
+		FileReader fl=new FileReader(flPath);
+		
+		//Get data and store it in buffer
+		BufferedReader br=new BufferedReader(fl);
+		
+		//Analyze buffer using readline
+		//Readline automatically read data from buffer line by line
+		String str=br.readLine();
+		
+		while (str!=null) {
+			
+			System.out.println(str);
+			str=br.readLine();
+			
+		}
+	}
+	//Verify file exist
+	public boolean FileExists(String fpath){
+		//Get file using path
+		File f = new File(fpath);
+		//Use exists to verify file existance
+		//isDirectory will verify that is a folder or file
+		if(f.exists()) { 
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	public void readExcel() throws BiffException, IOException {
+		String FilePath = "C:\\Users\\sudhakar\\Desktop\\Selenium1\\LearnWebDriver\\TestData\\OrangeHrm.xls";
+		FileInputStream fs = new FileInputStream(FilePath);
+		Workbook wb = Workbook.getWorkbook(fs);
+
+		// TO get the access to the sheet
+		Sheet sh = wb.getSheet("Sheet1");
+
+		// To get the number of rows present in sheet
+		int totalNoOfRows = sh.getRows();
+
+		// To get the number of columns present in sheet
+		int totalNoOfCols = sh.getColumns();
+
+		for (int row = 0; row < totalNoOfRows; row++) {
+
+			for (int col = 0; col < totalNoOfCols; col++) {
+				System.out.print(sh.getCell(col, row).getContents() + "\t");
+			}
+			System.out.println();
+		}
+	}
+}

@@ -1,0 +1,117 @@
+package ohrmtngProperty;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
+import net.sourceforge.htmlunit.corejs.javascript.ast.NewExpression;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.concurrent.TimeUnit;
+
+import jxl.read.biff.BiffException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Reporter;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterTest;
+
+public class ohrmdata {
+	WebDriver driver;
+	Actions action;	
+	Properties propertiesobj;
+	FileInputStream flProperties;
+	CommonMethods cm = new CommonMethods();
+	  @BeforeTest
+	  public void beforeTest() throws IOException {
+		  
+		  //Store object properties from properties file 
+		  propertiesobj = new Properties();
+		  String flPath ="C:\\Users\\sudhakar\\Desktop\\Selenium1\\LearnWebDriver\\src\\ohrmtngProperty\\objects.properties";
+		  flProperties= new FileInputStream(flPath);
+		  propertiesobj.load(flProperties);
+		  
+		driver = new FirefoxDriver();
+			
+		//Instruct webdriver to wait for 10 seconds before throwing an error
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		driver.get("http://localhost/orangehrm/symfony/web/index.php/auth/login");
+		driver.manage().window().maximize();
+		Reporter.log("BRowser opened");
+	  }
+
+	  @AfterTest
+	  public void afterTest() {
+		  driver.close();
+		  Reporter.log("BRowser closed");
+	  }
+	  
+	@Test(priority = 1)
+	@Parameters({"username","password"})
+	public void login(String uid, String pwd){
+		//Login
+		driver.findElement(By.xpath(propertiesobj.getProperty("txtEmail"))).sendKeys(uid);
+		driver.findElement(By.xpath(propertiesobj.getProperty("txtPwd"))).sendKeys(pwd);
+
+		driver.findElement(By.xpath(propertiesobj.getProperty("btnLogin"))).click();
+		System.out.println("login");
+		//Reporter.log("Logged in to browser");
+	}
+	
+	@Test(priority = 2,dataProvider = "tcdata" )
+	public void addEmployee(HashMap userdetails){
+		action = new Actions(driver);
+		WebElement pim = driver.findElement(By.linkText(propertiesobj.getProperty("lnkPIM")));
+		action.moveToElement(pim).build().perform();
+		
+		//action.moveToElement(we).moveToElement(driver.findElement(By.xpath("//a[text()='Add Employee']"))).click().build().perform();
+		
+		driver.findElement(By.linkText(propertiesobj.getProperty("lnkAddEmployee"))).click();
+		
+		driver.findElement(By.id(propertiesobj.getProperty("txtFirstName"))).sendKeys((String) userdetails.get("firstName"));
+		driver.findElement(By.id(propertiesobj.getProperty("txtLastName"))).sendKeys((String) userdetails.get("lastName"));
+		
+		driver.findElement(By.xpath("//input[@value='Save']")).click();
+		
+		if (driver.findElement(By.xpath("//h1[text()='Personal Details']")).isDisplayed()){
+			Reporter.log("Employee Added");
+			System.out.println("Add Employee successful");
+		}
+		else
+		{
+			Reporter.log("Fail to Add Employee");
+			System.out.println("Fail to add Employee");
+			System.exit(-1);			
+		}
+		
+	}
+	//(dataProvider = "MethodName",dataProviderClass=ClassName.class)
+  @DataProvider(name="tcdata")
+	public Object[][] getDatafromtc() throws BiffException, IOException
+	{
+	//Rows - Number of times your method has to be executed.
+	//Columns - Number of parameters in method definition.
+	Object[][] tdata;
+	tdata = cm.readTCDataToHashMap();
+	return tdata;
+	}
+
+}

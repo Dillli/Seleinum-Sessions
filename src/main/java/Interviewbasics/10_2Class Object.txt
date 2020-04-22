@@ -1,0 +1,42 @@
+package com.lj.basics;
+
+class Movie {
+	//Instance Variables
+	String title;
+	String genre;
+	int rating;
+	
+	//Method
+	void playIt() {
+		System.out.println("Playing the movie "+title);
+	}
+}
+
+public class MovieTestDrive {
+	
+public static void main(String[] args) {
+	
+	//create reference
+	Movie one = new Movie();
+	
+	//Assign values
+	one.title = "kshanam";
+	one.genre = "thriller";
+	one.rating = 4;
+	
+	//Call methods
+	one.playIt();
+	
+	Movie two = new Movie();
+	//two.title = "interstellar";
+	two.genre = "scifi";
+	two.rating = 5;
+	two.playIt();
+	
+	Movie three = new Movie();
+	three.title = "bangloredays";
+	three.genre = "comedy,drama";
+	three.rating = 5;
+	three.playIt();
+}
+}

@@ -1,0 +1,24 @@
+package com.lwd.basics;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class fblogin {
+
+	public static void main(String[] args) {
+		
+		WebDriver driver = new FirefoxDriver();
+		driver.get("http://facebook.com");
+		
+		//use syso as a shortcut 
+		System.out.println(driver.getTitle());
+		
+		driver.findElement(By.id("email")).sendKeys("sudhakar");
+		driver.findElement(By.id("pass")).sendKeys("qwerty");
+		driver.findElement(By.xpath("//input[contains(@class, 'login')]")).click();
+		driver.findElement(By.partialLinkText("Sign up for")).click();
+		driver.close();
+	}
+
+}

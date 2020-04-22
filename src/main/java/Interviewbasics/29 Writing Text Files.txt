@@ -1,0 +1,17 @@
+package com.lj.basics;
+import java.io.*;
+
+public class WriteFiles {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		FileWriter fw=new FileWriter("C:\\Users\\sudhakar\\Desktop\\Selenium1\\LearnWebDriver\\TestData\\demo2.txt");
+		BufferedWriter bw=new BufferedWriter(fw);
+
+		bw.write("qwerty");
+		bw.write("\n");
+		bw.write("uiop");
+		bw.write("asdf");
+		bw.close();
+	}
+}

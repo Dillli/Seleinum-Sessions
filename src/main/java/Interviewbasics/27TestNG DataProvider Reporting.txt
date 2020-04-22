@@ -1,0 +1,131 @@
+package ohrmtngdata;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Reporter;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterTest;
+
+public class ohrmdata {
+	WebDriver driver;
+	Actions action;	
+	
+	  @BeforeTest
+	  public void beforeTest() {
+		  
+		driver = new FirefoxDriver();
+			
+		//Instruct webdriver to wait for 10 seconds before throwing an error
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		driver.get("http://localhost/orangehrm/symfony/web/index.php/auth/login");
+		driver.manage().window().maximize();
+		Reporter.log("BRowser opened");
+	  }
+
+	  @AfterTest
+	  public void afterTest() {
+		  driver.close();
+		  Reporter.log("BRowser closed");
+	  }
+	  
+	@Test(priority = 1)
+	@Parameters({"username","password"})
+	public void login(String uid, String pwd){
+		//Login
+		driver.findElement(By.xpath("//input[@id='txtUsername']")).sendKeys(uid);
+		driver.findElement(By.id("txtPassword")).sendKeys(pwd);
+		driver.findElement(By.id("btnLogin")).click();
+		Reporter.log("Logged in to browser");
+	}
+	
+	@Test(priority = 2,dataProvider = "tdata" )
+	public void addEmployee(String fname,String lname){
+		action = new Actions(driver);
+		WebElement pim = driver.findElement(By.linkText("PIM"));
+		action.moveToElement(pim).build().perform();
+		
+		//action.moveToElement(we).moveToElement(driver.findElement(By.xpath("//a[text()='Add Employee']"))).click().build().perform();
+		
+		driver.findElement(By.linkText("Add Employee")).click();
+				
+		driver.findElement(By.id("firstName")).sendKeys(fname);
+		driver.findElement(By.id("lastName")).sendKeys(lname);
+		
+		driver.findElement(By.xpath("//input[@value='Save']")).click();
+		
+		if (driver.findElement(By.xpath("//h1[text()='Personal Details']")).isDisplayed()){
+			Reporter.log("Employee Added");
+			System.out.println("Add Employee successful");
+		}
+		else
+		{
+			Reporter.log("Fail to Add Employee");
+			System.out.println("Fail to add Employee");
+			System.exit(-1);			
+		}
+		
+	}
+	//(dataProvider = "MethodName",dataProviderClass=ClassName.class)
+  @DataProvider(name="tdata")
+	public Object[][] getData()
+	{
+	//Rows - Number of times your method has to be executed.
+	//Columns - Number of parameters in method definition.
+	Object[][] tdata = new Object[3][2];
+
+	// 1st run
+	tdata[0][0] ="user1";
+	tdata[0][1] = "aaa";
+
+	// 2nd run
+	tdata[1][0] ="user2";
+	tdata[1][1] = "bbb";
+	
+	// 3rd run
+	tdata[2][0] ="user3";
+	tdata[2][1] = "ccc";
+
+	return tdata;
+	}
+}
+
+
+/*XML File for above program
+
+
+<suite name = "smoke1">
+  <test name="smoketestcases1">
+	<parameters>
+		<parameter name = "username" value = "admin"/>
+		<parameter name = "password" value = "sudhakar"/>
+	</parameters>
+	<packages>
+			<package name = "ohrmtngdata"/>
+	</packages>
+
+  </test>
+
+</suite>
+
+*/
+
+

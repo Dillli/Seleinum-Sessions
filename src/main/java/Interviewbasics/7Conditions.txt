@@ -1,0 +1,43 @@
+package com.lj.basics;
+
+import javax.swing.JOptionPane;
+
+public class conditions {
+
+	public static void main(String[] args) {
+
+		//if condition
+		
+		int x=10;
+		int y=20;
+		
+		if(x>y){
+			JOptionPane.showMessageDialog(null,"x is bigger");
+		}
+		else if(y>x) {
+			JOptionPane.showMessageDialog(null,"y is bigger");
+		}
+		else{
+			JOptionPane.showMessageDialog(null,"both are equal");
+		}
+		
+		
+		//Switch case
+		
+		String stCode= JOptionPane.showInputDialog(null, "enter state code");
+		
+		switch(stCode){
+		
+		case "ap" :
+	    case "ts" :
+	       JOptionPane.showMessageDialog(null, "Hyderabad");
+	       break; //if you use break the other conditions will not work
+	    case "tn" :
+	    	JOptionPane.showMessageDialog(null, "chennai");
+	       break;
+	    default :
+	    	JOptionPane.showMessageDialog(null, "State code not exist");
+		}
+	}
+
+}
